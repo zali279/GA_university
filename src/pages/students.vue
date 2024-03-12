@@ -1,82 +1,53 @@
 <script>
-import { ProductService } from '@/service/ProductService'
+import { StudentService } from '@/service/StudentService'
 
 export default {
-  name: 'courses',
+  name: 'students',
   data() {
     return {
-      products: null,
-      expandedRows: []
+      students: null,
+      expandedRows: {}
     }
   },
   mounted() {
-    ProductService.getProductsWithOrdersSmall().then(
-      (data) => (this.products = data)
-    )
+    StudentService.getStudents().then((data) => (this.students = data))
   },
   methods: {
     onRowExpand(event) {
       this.$toast.add({
         severity: 'info',
-        summary: 'Product Expanded',
-        detail: event.data.name,
+        summary: 'Student Expanded',
+        detail: event.data.studentName,
         life: 3000
       })
     },
     onRowCollapse(event) {
       this.$toast.add({
         severity: 'success',
-        summary: 'Product Collapsed',
-        detail: event.data.name,
+        summary: 'Student Collapsed',
+        detail: event.data.studentName,
         life: 3000
       })
     },
     expandAll() {
-      this.expandedRows = this.products.reduce(
-        (acc, p) => (acc[p.id] = true) && acc,
-        {}
-      )
+      this.expandedRows = this.students.reduce((acc, s) => {
+        acc[s.id] = true
+        return acc
+      }, {})
     },
     collapseAll() {
-      this.expandedRows = null
+      this.expandedRows = {}
     },
     formatCurrency(value) {
-      return value.toLocaleString('en-US', {
-        style: 'currency',
-        currency: 'USD'
-      })
+      return value.toFixed(2)
     },
-    getSeverity(product) {
-      switch (product.inventoryStatus) {
-        case 'INSTOCK':
-          return 'success'
-
-        case 'LOWSTOCK':
-          return 'warning'
-
-        case 'OUTOFSTOCK':
-          return 'danger'
-
-        default:
-          return null
-      }
-    },
-    getOrderSeverity(order) {
-      switch (order.status) {
-        case 'DELIVERED':
-          return 'success'
-
-        case 'CANCELLED':
-          return 'danger'
-
-        case 'PENDING':
-          return 'warning'
-
-        case 'RETURNED':
-          return 'info'
-
-        default:
-          return null
+    getSeverity(student) {
+      if (student.GPA >= 3.5) {
+        return 'success'
+      } else if (student.GPA >= 3.0) {
+        return 'warning'
+      } else {
+        return 'danger'
       }
     }
   }
@@ -84,11 +55,11 @@ export default {
 </script>
 
 <template>
-  <h1>students</h1>
+  <h1>Students</h1>
   <div class="card">
     <DataTable
       v-model:expandedRows="expandedRows"
-      :value="products"
+      :value="students"
       dataKey="id"
       @rowExpand="onRowExpand"
       @rowCollapse="onRowCollapse"
@@ -111,65 +82,43 @@ export default {
         </div>
       </template>
       <Column expander style="width: 5rem" />
-      <Column field="name" header="Student Id"></Column>
-      <Column header="Image">
+      <Column field="studentId" header="Student Id"></Column>
+      <Column field="studentName" header="Student Name"></Column>
+      <Column field="image" header="Image">
         <template #body="slotProps">
           <img
-            :src="`https://primefaces.org/cdn/primevue/images/product/${slotProps.data.image}`"
+            :src="`https://example.com/images/${slotProps.data.image}`"
             :alt="slotProps.data.image"
             class="shadow-4"
             width="64"
           />
         </template>
       </Column>
-      <Column field="price" header="Price">
-        <template #body="slotProps">
-          {{ formatCurrency(slotProps.data.price) }}
-        </template>
-      </Column>
-      <Column field="category" header="Category"></Column>
-      <Column field="rating" header="Reviews">
-        <template #body="slotProps">
-          <Rating
-            :modelValue="slotProps.data.rating"
-            readonly
-            :cancel="false"
-          />
-        </template>
-      </Column>
-      <Column header="Status">
-        <template #body="slotProps">
-          <Tag
-            :value="slotProps.data.inventoryStatus"
-            :severity="getSeverity(slotProps.data)"
-          />
-        </template>
-      </Column>
+      <Column field="GPA" header="GPA"></Column>
+      <Column field="major" header="Major"></Column>
+      <Column field="ranking" header="Ranking"></Column>
+      <Column field="status" header="Status"></Column>
       <template #expansion="slotProps">
         <div class="p-3">
-          <h5>Orders for {{ slotProps.data.name }}</h5>
-          <DataTable :value="slotProps.data.orders">
-            <Column field="id" header="Id" sortable></Column>
-            <Column field="customer" header="Classes" sortable></Column>
-            <Column field="date" header="Date" sortable></Column>
-            <Column field="amount" header="Amount" sortable>
-              <template #body="slotProps">
-                {{ formatCurrency(slotProps.data.amount) }}
-              </template>
-            </Column>
-            <Column field="status" header="Status" sortable>
-              <template #body="slotProps">
-                <Tag
-                  :value="slotProps.data.status.toLowerCase()"
-                  :severity="getOrderSeverity(slotProps.data)"
-                />
-              </template>
-            </Column>
-            <Column headerStyle="width:4rem">
-              <template #body>
-                <Button icon="pi pi-search" />
-              </template>
-            </Column>
+          <h5>Courses of {{ slotProps.data.studentName }}</h5>
+          <DataTable :value="slotProps.data.courses">
+            <Column field="className" header="Class Name" sortable></Column>
+            <Column field="classCode" header="Class Code" sortable></Column>
+            <Column
+              field="classInstructor"
+              header="Class Instructor"
+              sortable
+            ></Column>
+            <Column
+              field="studentScore"
+              header="Student Score"
+              sortable
+            ></Column>
+            <Column
+              field="currentStatus"
+              header="Current Status"
+              sortable
+            ></Column>
           </DataTable>
         </div>
       </template>
