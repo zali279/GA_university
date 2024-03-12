@@ -19,7 +19,7 @@ export default {
 nav {
   background: #42b983;
   padding: 1em;
-  width: 1750px;
+  width: 1550px;
   margin-top: -8px;
   margin-left: -20px;
 }
