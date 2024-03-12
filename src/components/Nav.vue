@@ -4,4 +4,30 @@ export default {
 }
 </script>
 
-<template></template>
+<template>
+  <nav>
+    <router-link to="/" name="HomePage">Students</router-link>
+    <router-link to="/courses">courses</router-link>
+  </nav>
+</template>
+
+<style>
+.router-link-exact-active {
+  color: #fff;
+}
+
+nav {
+  background: #42b983;
+  padding: 1em;
+  width: 1750px;
+  margin-top: -8px;
+  margin-left: -20px;
+}
+
+nav a {
+  margin: 1em;
+  color: #2c3e50;
+  text-decoration: none;
+  font-weight: 800;
+}
+</style>
