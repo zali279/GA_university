@@ -23,6 +23,7 @@ nav {
   width: 1550px;
   margin-top: -8px;
   margin-left: -20px;
+  margin-bottom: 5%;
 }
 
 nav a {

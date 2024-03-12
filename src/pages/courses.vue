@@ -26,8 +26,13 @@ export default {
       </template>
       <template #footer>
         <div class="flex gap-3 mt-1">
-          <Button label="Cancel" severity="secondary" outlined class="w-full" />
-          <Button label="Save" class="w-full" />
+          <Button
+            label="More Details"
+            severity="secondary"
+            outlined
+            class="w-full"
+          />
+          <Button label="Add to Favourties" class="w-full" />
         </div>
       </template>
     </Card>
