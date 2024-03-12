@@ -55,7 +55,7 @@ export default {
 </script>
 
 <template>
-  <h1>Students</h1>
+  <h1>All Our Students</h1>
   <div class="card">
     <DataTable
       v-model:expandedRows="expandedRows"
