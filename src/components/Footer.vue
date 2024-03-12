@@ -56,16 +56,14 @@ export default {
 </script>
 <style>
 .footer {
-  background-color: #41ba82; /* Changed to the desired color */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: relative;
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  margin-top: 5%;
+  height: 11%;
+  z-index: 1;
+  margin-top: 10%;
 }
-
-/* Your existing styles */
 .container {
   max-width: 100%;
   margin: 0 auto;
