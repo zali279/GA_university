@@ -1,6 +1,26 @@
 export const StudentService = {
+  sampleCourses: [
+    {
+      id: 'c1',
+      className: 'Course 1',
+      classCode: 'C101',
+      classInstructor: 'Instructor A'
+    },
+    {
+      id: 'c2',
+      className: 'Course 2',
+      classCode: 'C102',
+      classInstructor: 'Instructor B'
+    },
+    {
+      id: 'c3',
+      className: 'Course 3',
+      classCode: 'C103',
+      classInstructor: 'Instructor C'
+    }
+  ],
   getStudentsData() {
-    return [
+    const students = [
       {
         id: '1001',
         studentId: '20152109',
@@ -15,7 +35,8 @@ export const StudentService = {
         id: '1002',
         studentId: '20152110',
         studentName: 'Michael Brown',
-        image: 'michael.jpg',
+        image:
+          'https://img.freepik.com/premium-photo/young-asian-indian-student-with-glasses-backpack-holds-book-shows-thumbs-up_928503-89.jpg',
         GPA: 3.2,
         major: 'History',
         ranking: 3,
@@ -102,6 +123,10 @@ export const StudentService = {
         status: 'Active'
       }
     ]
+    students.forEach((student) => {
+      student.courses = [...this.sampleCourses]
+    })
+    return students
   },
 
   getStudentClassesData() {

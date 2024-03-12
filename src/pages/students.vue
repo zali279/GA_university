@@ -49,6 +49,19 @@ export default {
       } else {
         return 'danger'
       }
+    },
+    deleteStudent(studentId) {
+      this.students = this.students.filter(
+        (student) => student.id !== studentId
+      )
+    },
+    removeCourse(studentId, courseId) {
+      const student = this.students.find((s) => s.id === studentId)
+      if (student) {
+        student.courses = student.courses.filter(
+          (course) => course.id !== courseId
+        )
+      }
     }
   }
 }
@@ -87,7 +100,7 @@ export default {
       <Column field="image" header="Image">
         <template #body="slotProps">
           <img
-            :src="`https://example.com/images/${slotProps.data.image}`"
+            :src="`${slotProps.data.image}`"
             :alt="slotProps.data.image"
             class="shadow-4"
             width="64"
@@ -98,6 +111,14 @@ export default {
       <Column field="major" header="Major"></Column>
       <Column field="ranking" header="Ranking"></Column>
       <Column field="status" header="Status"></Column>
+      <Column>
+        <template #body="slotProps">
+          <Button
+            icon="pi pi-times"
+            @click="deleteStudent(slotProps.data.id)"
+          />
+        </template>
+      </Column>
       <template #expansion="slotProps">
         <div class="p-3">
           <h5>Courses of {{ slotProps.data.studentName }}</h5>
@@ -119,6 +140,16 @@ export default {
               header="Current Status"
               sortable
             ></Column>
+            <Column>
+              <template #body="courseSlotProps">
+                <Button
+                  icon="pi pi-times"
+                  @click="
+                    removeCourse(slotProps.data.id, courseSlotProps.data.id)
+                  "
+                />
+              </template>
+            </Column>
           </DataTable>
         </div>
       </template>
