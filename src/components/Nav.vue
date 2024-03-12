@@ -7,7 +7,8 @@ export default {
 <template>
   <nav>
     <router-link to="/" name="HomePage">Students</router-link>
-    <router-link to="/courses">courses</router-link>
+    <router-link to="/courses">Courses</router-link>
+    <router-link to="/about">About</router-link>
   </nav>
 </template>
 
