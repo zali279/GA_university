@@ -34,17 +34,6 @@
           </li>
         </ul>
       </div>
-      <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8" />
-      <span class="block text-sm sm:text-center text-gray-900">
-        © 2024
-        <a
-          href="https://trello.com/b/TTEQnkSE/hungry-link"
-          class="hover:underline"
-        >
-          GA UNIVERSITY™
-        </a>
-        . All Rights Reserved.
-      </span>
     </div>
   </footer>
 </template>
@@ -54,37 +43,25 @@ export default {
   name: 'Footer'
 }
 </script>
+
 <style>
 .footer {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 11%;
-  z-index: 1;
-  margin-top: 10%;
-}
-.container {
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 1rem;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
+  margin-top: auto;
 }
 
 .logo img {
-  height: 2.5rem; /* Adjust as needed */
+  height: 4rem;
 }
 
 .title {
   font-size: 1.5rem;
   font-weight: 600;
   white-space: nowrap;
-  color: #fff; /* Dark text color for dark background */
+  color: #fff;
 }
 
 .links {
@@ -98,40 +75,12 @@ export default {
   margin-right: 1rem;
   font-size: 0.875rem;
   font-weight: 500;
-  color: #757575; /* Gray text color */
+  color: #757575;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .links a:hover {
-  color: #333; /* Darker text color on hover */
-}
-
-.separator {
-  width: 100%;
-  max-width: 60rem; /* Adjust as needed */
-  margin: 0 auto;
-  border-top: 1px solid #e0e0e0; /* Light gray border */
-}
-
-.copyright {
-  display: block;
-  font-size: 0.875rem;
-  color: #757575; /* Gray text color */
-  text-align: center;
-}
-
-@media screen and (min-width: 640px) {
-  .logo {
-    margin-bottom: 0;
-  }
-
-  .links {
-    margin-bottom: 0;
-  }
-
-  .links a {
-    margin-right: 2rem;
-  }
+  color: #ff0000;
 }
 </style>

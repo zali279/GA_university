@@ -34,6 +34,18 @@ export default {
 </script>
 
 <template>
+  <div class="header">
+    <div class="row align-items-center">
+      <div class="col">
+        <h1 class="text-center">All Our Courses</h1>
+      </div>
+      <div class="col-auto">
+        <router-link to="/AddCourse" class="btn btn-primary custom-btn">
+          Add Course
+        </router-link>
+      </div>
+    </div>
+  </div>
   <div class="listings">
     <Card
       style="width: 25rem; overflow: hidden"

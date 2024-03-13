@@ -6,9 +6,10 @@ export default {
 
 <template>
   <nav>
+    <router-link to="/about">About</router-link>
+
     <router-link to="/" name="HomePage">Students</router-link>
     <router-link to="/courses">Courses</router-link>
-    <router-link to="/about">About</router-link>
   </nav>
 </template>
 
@@ -20,9 +21,8 @@ export default {
 nav {
   background: #42b983;
   padding: 1em;
-  width: 1550px;
-  margin-top: -8px;
-  margin-left: -20px;
+  width: 100%;
+  font-weight: bolder;
 }
 
 nav a {
