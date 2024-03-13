@@ -16,7 +16,7 @@ export default {
     <header>
       <Nav />
     </header>
-    <main style="height: 90vh !important">
+    <main>
       <router-view></router-view>
     </main>
     <Footer />
