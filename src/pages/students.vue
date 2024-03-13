@@ -177,7 +177,18 @@ export default {
 </script>
 
 <template>
-  <h1>All Our Students</h1>
+  <div class="header">
+    <div class="row align-items-center">
+      <div class="col">
+        <h1 class="text-center">All Our Students</h1>
+      </div>
+      <div class="col-auto">
+        <router-link to="/AddStudent" class="btn btn-primary custom-btn">
+          Add Student
+        </router-link>
+      </div>
+    </div>
+  </div>
   <div class="card">
     <DataTable
       v-model:expandedRows="expandedRows"
@@ -280,3 +291,24 @@ export default {
     </Dialog>
   </div>
 </template>
+
+<style>
+.custom-btn {
+  background-color: #42b983;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s, color 0.3s;
+  margin-top: 10%;
+}
+
+.custom-btn:hover {
+  background-color: #238636;
+}
+.header h1 {
+  font-size: 2.5rem;
+  margin: 2%;
+  font-weight: bolder;
+}
+</style>
