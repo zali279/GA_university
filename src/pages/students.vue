@@ -49,7 +49,7 @@ export default {
       this.$toast.add({
         severity: 'info',
         summary: 'Student Expanded',
-        detail: event.data.name,
+        detail: event.data.studentName,
         life: 3000
       })
     },
@@ -57,14 +57,15 @@ export default {
       this.$toast.add({
         severity: 'success',
         summary: 'Student Collapsed',
-        detail: event.data.name,
+        detail: event.data.studentName,
         life: 3000
       })
     },
     expandAll() {
-      this.students.forEach((student) => {
-        this.$set(this.expandedRows, student._id, true)
-      })
+      this.expandedRows = this.students.reduce((acc, s) => {
+        acc[s.id] = true
+        return acc
+      }, {})
     },
     collapseAll() {
       this.expandedRows = {}
@@ -181,7 +182,7 @@ export default {
     <DataTable
       v-model:expandedRows="expandedRows"
       :value="students"
-      dataKey="_id"
+      dataKey="id"
       @rowExpand="onRowExpand"
       @rowCollapse="onRowCollapse"
       tableStyle="min-width: 60rem"
@@ -260,7 +261,6 @@ export default {
     </DataTable>
     <Toast />
 
-    <!-- Add Course Dialog -->
     <Dialog
       v-model:visible="showAddCourseDialog"
       modal="true"
