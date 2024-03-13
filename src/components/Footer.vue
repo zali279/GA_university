@@ -6,7 +6,7 @@
           href="https://trello.com/b/TTEQnkSE/hungry-link"
           class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse"
         >
-          <img src="/public/Untitled design-4.png" alt="Logo" class="h-10" />
+          <img src="/Untitled design-4.png" alt="Logo" class="h-10" />
           <span
             class="self-center text-2xl font-semibold whitespace-nowrap text-gray-900 m-0"
           >

@@ -10,6 +10,8 @@ import Rating from 'primevue/rating'
 import Tag from 'primevue/tag'
 import Toast from 'primevue/toast'
 import ToastService from 'primevue/toastservice'
+import Dialog from 'primevue/dialog'
+// Import PrimeVue styles
 import Card from 'primevue/card' // Import the Card component
 
 import 'primevue/resources/themes/saga-blue/theme.css'
@@ -20,6 +22,8 @@ const app = createApp(App)
 
 app.use(router)
 app.use(PrimeVue)
+app.use(Dialog)
+app.use(ToastService) // Required for Toast component
 app.use(ToastService)
 
 app.component('DataTable', DataTable)
