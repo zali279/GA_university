@@ -2,6 +2,7 @@
 import Client from '../../.vscode/services/api'
 import Dropdown from 'primevue/dropdown'
 import Dialog from 'primevue/dialog'
+import axios from 'axios'
 export default {
   name: 'students',
   components: {
@@ -19,7 +20,9 @@ export default {
         courseId: null,
         gradeLetter: null,
         studentId: null
-      }
+      },
+      searchName: '',
+      searchCourse: ''
     }
   },
   mounted() {
@@ -171,6 +174,30 @@ export default {
       return this.allCourses.filter(
         (course) => !enrolledCourseIds.includes(course._id)
       )
+    },
+    handleSearchName(event) {
+      this.searchName = event.target.value
+      // console.log(searchName)
+      const allStudent = this.students
+      const searchResualt = allStudent.filter((student) =>
+        student.name.toLowerCase().includes(this.searchName.toLowerCase())
+      )
+      this.students = searchResualt
+    },
+    handleChangeSearchCourse(event) {
+      this.searchCourse = event.target.value
+    },
+    handleSearchCourse(event) {
+      event.preventDefault()
+      axios
+        .get(`http://localhost:3000/courses/${this.searchCourse}`)
+        .then((response) => {
+          console.log(response.data)
+          this.students = response.data
+        })
+    },
+    clearSearch() {
+      this.fetchStudents()
     }
   }
 }
@@ -189,6 +216,25 @@ export default {
       </div>
     </div>
   </div>
+  <h1>All Our Students</h1>
+  <input
+    type="text"
+    v-model="searchName"
+    placeholder="Search by name"
+    name="searchName"
+    :onChange="handleSearchName"
+  />
+  <form @submit="handleSearchCourse">
+    <input
+      type="text"
+      v-model="searchCourse"
+      placeholder="Search by Course"
+      name="searchCourse"
+      :onChange="handleChangeSearchCourse"
+    />
+    <button type="submit">Search</button>
+  </form>
+  <button type="submit" @click="clearSearch">Clear Search</button>
   <div class="card">
     <DataTable
       v-model:expandedRows="expandedRows"
