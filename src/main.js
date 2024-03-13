@@ -24,7 +24,6 @@ app.use(router)
 app.use(PrimeVue)
 app.use(Dialog)
 app.use(ToastService) // Required for Toast component
-app.use(ToastService)
 
 app.component('DataTable', DataTable)
 app.component('Column', Column)
