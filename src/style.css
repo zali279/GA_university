@@ -71,6 +71,7 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 } */
+
 body {
-overflow-x: hidden;
+  overflow-x: hidden;
 }

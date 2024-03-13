@@ -1,9 +1,8 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from './router' // Import your router
-
-// Import PrimeVue and the required components
+import router from './router'
 import PrimeVue from 'primevue/config'
+import 'tailwindcss/tailwind.css'
 import DataTable from 'primevue/datatable'
 import Column from 'primevue/column'
 import Button from 'primevue/button'
@@ -13,6 +12,8 @@ import Toast from 'primevue/toast'
 import ToastService from 'primevue/toastservice'
 import Dialog from 'primevue/dialog'
 // Import PrimeVue styles
+import Card from 'primevue/card' // Import the Card component
+
 import 'primevue/resources/themes/saga-blue/theme.css'
 import 'primevue/resources/primevue.min.css'
 import 'primeicons/primeicons.css'
@@ -23,13 +24,14 @@ app.use(router)
 app.use(PrimeVue)
 app.use(Dialog)
 app.use(ToastService) // Required for Toast component
+app.use(ToastService)
 
-// Register the components
 app.component('DataTable', DataTable)
 app.component('Column', Column)
 app.component('Button', Button)
 app.component('Rating', Rating)
 app.component('Tag', Tag)
 app.component('Toast', Toast)
+app.component('Card', Card) // Register the Card component
 
 app.mount('#app')
